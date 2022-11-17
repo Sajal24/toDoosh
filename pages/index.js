@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import styles from "../styles/Home.module.css";
 
 const Home = () => {
   const [todoItem, setTodoItem] = useState("");
@@ -46,7 +47,7 @@ const Home = () => {
   };
 
   return (
-    <div className="w-3/4 mx-auto text-center">
+    <div className="w-1/2 mx-auto text-center">
       <h1 className="text-4xl pt-12">toDoosh</h1>
 
       <div className="pt-12">
@@ -59,14 +60,14 @@ const Home = () => {
         />
       </div>
 
-      <ul>
+      <ul className="pt-12">
         {items
           .filter(({ done }) => !done)
-          .map(({ id, message, done }) => (
+          .map(({ id, message }) => (
             <li
               key={id}
               onClick={() => handleToggle(id)}
-              className={classNames("item", { done })}
+              className={classNames(styles.item)}
             >
               {message}
             </li>
@@ -74,11 +75,11 @@ const Home = () => {
 
         {items
           .filter(({ done }) => done)
-          .map(({ id, message, done }) => (
+          .map(({ id, message }) => (
             <li
               key={id}
               onClick={() => handleToggle(id)}
-              className={classNames("item", { done })}
+              className={classNames(styles.item, styles.done)}
             >
               {message}
             </li>
