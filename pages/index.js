@@ -26,6 +26,10 @@ const Home = () => {
     }
   };
 
+  const handleEnter = (e) => {
+    if (e.key === "Enter") handleAdd();
+  };
+
   const handleToggle = (id) => {
     const _items = items.map((item) => {
       if (item.id === id) {
@@ -42,30 +46,43 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <h1>toDoosh</h1>
+    <div className="w-3/4 mx-auto text-center">
+      <h1 className="text-4xl pt-12">toDoosh</h1>
 
-      <div>
+      <div className="pt-12">
         <input
           type="text"
+          className="text-gray-900 px-4 py-2 rounded text-center w-full"
           value={todoItem}
           onChange={(e) => setTodoItem(e.target.value)}
+          onKeyDown={handleEnter}
         />
-        <button type="button" onClick={handleAdd}>
-          Add
-        </button>
       </div>
 
       <ul>
-        {items.map(({ id, message, done }) => (
-          <li
-            key={id}
-            onClick={(id) => handleToggle(id)}
-            className={classNames("item", { done })}
-          >
-            {message}
-          </li>
-        ))}
+        {items
+          .filter(({ done }) => !done)
+          .map(({ id, message, done }) => (
+            <li
+              key={id}
+              onClick={() => handleToggle(id)}
+              className={classNames("item", { done })}
+            >
+              {message}
+            </li>
+          ))}
+
+        {items
+          .filter(({ done }) => done)
+          .map(({ id, message, done }) => (
+            <li
+              key={id}
+              onClick={() => handleToggle(id)}
+              className={classNames("item", { done })}
+            >
+              {message}
+            </li>
+          ))}
       </ul>
     </div>
   );
