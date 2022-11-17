@@ -8,7 +8,7 @@ const Home = () => {
   const [items, setItems] = useState([
     {
       id: "0",
-      message: "Buy 2 seggs",
+      message: "Hey stoopid!",
       done: false,
     },
   ]);
@@ -47,20 +47,20 @@ const Home = () => {
   };
 
   return (
-    <div className="w-1/2 mx-auto text-center">
+    <div className="w-1/2 h-screen mx-auto text-center bg-[url('../styles/78.jpg')] bg-cover ">
       <h1 className="text-4xl pt-12">toDoosh</h1>
 
       <div className="pt-12">
         <input
           type="text"
-          className="text-gray-900 px-4 py-2 rounded text-center w-full"
+          className="text-gray-900 px-4 py-2 rounded text-center w-3/4"
           value={todoItem}
           onChange={(e) => setTodoItem(e.target.value)}
           onKeyDown={handleEnter}
         />
       </div>
 
-      <ul className="pt-12">
+      <ul className="pt-12 px-4">
         {items
           .filter(({ done }) => !done)
           .map(({ id, message }) => (

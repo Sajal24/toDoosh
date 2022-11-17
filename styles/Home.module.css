@@ -1,5 +1,5 @@
 .item {
-  @apply py-4 border border-t-0 border-gray-700 cursor-pointer;
+  @apply px-2 py-4 border border-t-0 border-gray-700 cursor-pointer h-14 bg-gradient-to-r from-violet-500 to-fuchsia-500;
 }
 
 .item:first-child {
@@ -11,5 +11,5 @@
 }
 
 .item.done {
-  @apply opacity-50 line-through;
+  @apply opacity-70 bg-gradient-to-r from-cyan-500 to-blue-500 line-through;
 }
