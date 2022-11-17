@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
@@ -25,6 +26,21 @@ const Home = () => {
     }
   };
 
+  const handleToggle = (id) => {
+    const _items = items.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          done: !item.done,
+        };
+      }
+
+      return item;
+    });
+
+    setItems(_items);
+  };
+
   return (
     <div>
       <h1>toDoosh</h1>
@@ -41,8 +57,14 @@ const Home = () => {
       </div>
 
       <ul>
-        {items.map(({ id, message }) => (
-          <li key={id}>{message}</li>
+        {items.map(({ id, message, done }) => (
+          <li
+            key={id}
+            onClick={(id) => handleToggle(id)}
+            className={classNames("item", { done })}
+          >
+            {message}
+          </li>
         ))}
       </ul>
     </div>
